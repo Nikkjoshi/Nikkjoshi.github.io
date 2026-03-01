@@ -149,10 +149,11 @@
       transform: translateY(-2px);
     }
 
-    .about-grid {
+    .about-layout {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.8rem;
+      grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: center;
     }
 
     .card {
@@ -162,24 +163,27 @@
       padding: 1.5rem;
     }
 
+    .about-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 320px;
+      padding: 1rem;
+      background: #f5f2e9;
+    }
+
+    .about-image img {
+      width: min(100%, 240px);
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid #d9d4c5;
+      background: #e8e3d3;
+    }
+
     .about-text p {
       color: var(--muted);
       margin-bottom: 1rem;
-    }
-
-    .mini-kpis {
-      display: grid;
-      gap: 0.7rem;
-      align-content: start;
-    }
-
-    .mini-kpi {
-      border: 1px solid var(--line);
-      color: #425246;
-      background: #fbfaf8;
-      border-radius: 8px;
-      padding: 0.9rem;
-      font-size: 0.93rem;
     }
 
     .timeline {
@@ -354,10 +358,14 @@
     }
 
     @media (max-width: 900px) {
-      .about-grid,
+      .about-layout,
       .projects-grid,
       .contact-grid {
         grid-template-columns: 1fr;
+      }
+
+      .about-image {
+        min-height: 260px;
       }
 
       .timeline::before {
@@ -409,25 +417,27 @@
       <div class="container">
         <h1 class="section-title">About Me</h1>
         <p class="section-sub">Product strategy, data analytics, and AI-powered user experiences in fintech.</p>
-        <div class="about-grid">
+        <div class="about-layout">
+          <figure class="card about-image">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 320'%3E%3Crect width='320' height='320' fill='%23ece6d6'/%3E%3Crect x='56' y='56' width='208' height='208' rx='18' fill='none' stroke='%23545a4d' stroke-width='8'/%3E%3Ccircle cx='118' cy='124' r='22' fill='%23545a4d'/%3E%3Cpath d='M84 232l52-70a12 12 0 0 1 20 0l34 46 26-34a12 12 0 0 1 19 0l25 58H84z' fill='%23545a4d'/%3E%3C/svg%3E"
+              alt="Profile image placeholder"
+            />
+          </figure>
           <article class="card about-text">
             <p>
-              I have 3+ years of experience building B2C products in startup environments. My work combines product thinking,
-              experimentation, and business outcomes.
+              I'm an MBA professional with 3+ years of experience building and scaling B2C fintech products in startup environments.
+              I work across product strategy, analytics, and AI-driven user experiences.
             </p>
             <p>
-              I enjoy breaking complex user problems into clear workflows, especially where finance and behavior intersect.
+              Most of my work sits at the intersection of technology, financial data, and user behavior, with a focus on shipping
+              practical features that improve engagement and decision quality.
             </p>
             <p>
-              I focus on practical AI use cases that improve user clarity and reduce friction in everyday product journeys.
+              I transitioned from civil engineering to product management, and I bring a blend of analytical thinking, user empathy,
+              and execution discipline to every product I build.
             </p>
           </article>
-          <aside class="mini-kpis">
-            <div class="mini-kpi"><strong>125K+</strong> DAU on shipped features</div>
-            <div class="mini-kpi"><strong>8x</strong> user growth from 15K to 125K</div>
-            <div class="mini-kpi"><strong>90%+</strong> AI query resolution (LLM flow)</div>
-            <div class="mini-kpi"><strong>Focus:</strong> Product, Growth, AI, Capital Markets</div>
-          </aside>
         </div>
       </div>
     </section>
