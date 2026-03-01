@@ -17,6 +17,7 @@
       --line: #e0e0e0;
       --green: #4a5d4e;
       --blue: #4a5d4e;
+      --active-link: #3b6df6;
     }
 
     * {
@@ -83,6 +84,11 @@
 
     nav a:hover {
       color: var(--green);
+    }
+
+    nav a.is-active {
+      color: var(--active-link);
+      font-weight: 600;
     }
 
     main section {
@@ -571,5 +577,63 @@
   <footer>
     <div class="container">&copy; 2026 Nikhilesh Joshi</div>
   </footer>
+  <script>
+    const navLinks = Array.from(document.querySelectorAll('nav a[href^="#"]'));
+    const sectionMap = new Map(
+      navLinks
+        .map((link) => {
+          const id = link.getAttribute("href").slice(1);
+          const section = document.getElementById(id);
+          return section ? [id, section] : null;
+        })
+        .filter(Boolean)
+    );
+
+    function setActiveLink(activeId) {
+      navLinks.forEach((link) => {
+        const isActive = link.getAttribute("href") === "#" + activeId;
+        link.classList.toggle("is-active", isActive);
+        if (isActive) {
+          link.setAttribute("aria-current", "page");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    }
+
+    const visibleSections = new Map();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            visibleSections.set(entry.target.id, entry.intersectionRatio);
+          } else {
+            visibleSections.delete(entry.target.id);
+          }
+        });
+
+        if (visibleSections.size === 0) {
+          return;
+        }
+
+        const [mostVisibleId] = Array.from(visibleSections.entries()).sort((a, b) => b[1] - a[1])[0];
+        setActiveLink(mostVisibleId);
+      },
+      {
+        root: null,
+        rootMargin: "-18% 0px -55% 0px",
+        threshold: [0.2, 0.4, 0.6, 0.8]
+      }
+    );
+
+    sectionMap.forEach((section) => observer.observe(section));
+
+    const initialId = window.location.hash.slice(1);
+    if (sectionMap.has(initialId)) {
+      setActiveLink(initialId);
+    } else if (sectionMap.has("about")) {
+      setActiveLink("about");
+    }
+  </script>
 </body>
 </html>
