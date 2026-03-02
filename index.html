@@ -276,25 +276,35 @@
     }
 
     .project {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: 8px;
       overflow: hidden;
+      transition: 0.2s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-2px);
+      border-color: #cdd5ce;
     }
 
     .project-thumb {
-      height: 170px;
-      background: linear-gradient(135deg, rgba(74, 93, 78, 0.08), rgba(74, 93, 78, 0.12));
+      aspect-ratio: 16 / 9;
+      height: auto;
+      background: #f3f1eb;
       border-bottom: 1px solid var(--line);
       position: relative;
+      overflow: hidden;
     }
 
-    .project-thumb::after {
-      content: "";
-      position: absolute;
-      inset: 14px;
-      border: 1px solid #d6d6d6;
-      border-radius: 7px;
+    .project-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .project-body {
@@ -317,6 +327,7 @@
       color: #6f786f;
       font-size: 0.75rem;
       letter-spacing: 0.04em;
+      line-height: 1.5;
     }
 
     .contact-grid {
@@ -535,41 +546,53 @@
         <p class="section-sub">Selected work across AI, product growth, and market intelligence.</p>
 
         <div class="projects-grid">
-          <article class="project">
-            <div class="project-thumb"></div>
-            <div class="project-body">
-              <h3>AI-Powered Holdings Feed</h3>
-              <p>Built a personalized holdings experience using LLM-driven workflows for large-scale user engagement.</p>
-              <div class="tags">LLM • RAG • Financial Data • Product Analytics</div>
+          <!-- Project 1: link | image | title (<= 5 words) | about (~20 words) | skills (max 5) -->
+          <a class="project" href="https://www.notion.so/" target="_blank" rel="noopener noreferrer">
+            <div class="project-thumb">
+              <img src="./assets/images/projects/ai-holdings-feed.jpg" alt="AI holdings feed project image" loading="lazy" />
             </div>
-          </article>
+            <div class="project-body">
+              <h3>AI Holdings Feed Builder</h3>
+              <p>Built personalized holdings discovery for investors using AI summaries, watchlist context, and clear insights that improved repeat engagement and action quality.</p>
+              <div class="tags">LLM • RAG • Product Analytics • Fintech UX • Experimentation</div>
+            </div>
+          </a>
 
-          <article class="project">
-            <div class="project-thumb"></div>
-            <div class="project-body">
-              <h3>AI Trade Journal (Whisper API)</h3>
-              <p>Created a voice-to-text journal workflow to make trade logging and reflection faster for active users.</p>
-              <div class="tags">Whisper API • Python • UX Workflow • Integration</div>
+          <!-- Project 2: link | image | title (<= 5 words) | about (~20 words) | skills (max 5) -->
+          <a class="project" href="https://docs.google.com/presentation/" target="_blank" rel="noopener noreferrer">
+            <div class="project-thumb">
+              <img src="./assets/images/projects/ai-trade-journal.jpg" alt="AI trade journal project image" loading="lazy" />
             </div>
-          </article>
+            <div class="project-body">
+              <h3>AI Trade Journal Workflow</h3>
+              <p>Designed voice-to-journal logging flow for traders to capture decisions faster, review outcomes, and build disciplined feedback loops across sessions.</p>
+              <div class="tags">Whisper API • Python • UX Workflow • Integrations • Prompt Design</div>
+            </div>
+          </a>
 
-          <article class="project">
-            <div class="project-thumb"></div>
-            <div class="project-body">
-              <h3>Virtual Trading Optimization</h3>
-              <p>Improved retention and feature adoption using growth loops, event tracking, and experiment-based rollout.</p>
-              <div class="tags">Retention • Growth Loops • A/B Testing • Amplitude</div>
+          <!-- Project 3: link | image | title (<= 5 words) | about (~20 words) | skills (max 5) -->
+          <a class="project" href="https://www.notion.so/" target="_blank" rel="noopener noreferrer">
+            <div class="project-thumb">
+              <img src="./assets/images/projects/virtual-trading-optimization.jpg" alt="Virtual trading optimization project image" loading="lazy" />
             </div>
-          </article>
+            <div class="project-body">
+              <h3>Virtual Trading Retention Engine</h3>
+              <p>Improved adoption and retention by instrumenting user funnels, redesigning activation moments, and running iterative experiments with measurable conversion lift.</p>
+              <div class="tags">Retention • Growth Loops • A/B Testing • Amplitude • Funnel Analysis</div>
+            </div>
+          </a>
 
-          <article class="project">
-            <div class="project-thumb"></div>
-            <div class="project-body">
-              <h3>Equity Research Publications</h3>
-              <p>Produced structured market and company analyses with transparent assumptions and investment thesis logic.</p>
-              <div class="tags">Research • Capital Markets • Valuation • Communication</div>
+          <!-- Project 4: link | image | title (<= 5 words) | about (~20 words) | skills (max 5) -->
+          <a class="project" href="https://www.notion.so/" target="_blank" rel="noopener noreferrer">
+            <div class="project-thumb">
+              <img src="./assets/images/projects/equity-research-publications.jpg" alt="Equity research publications project image" loading="lazy" />
             </div>
-          </article>
+            <div class="project-body">
+              <h3>Equity Research Insight Notes</h3>
+              <p>Published structured company and sector research with clear assumptions, valuation context, and concise thesis communication for informed investing decisions.</p>
+              <div class="tags">Research • Capital Markets • Valuation • Writing • Decision Frameworks</div>
+            </div>
+          </a>
         </div>
       </div>
     </section>
