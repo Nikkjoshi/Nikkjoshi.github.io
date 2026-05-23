@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Date Question</title>
+  <style>
+    :root {
+      --bg1: #fff3e8;
+      --bg2: #ffd7c2;
+      --card: rgba(255, 255, 255, 0.56);
+      --text: #3a1e12;
+      --yes: #ff4f87;
+      --yes-dark: #df2968;
+      --no: #5d4037;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, #ffe8dc 0 20%, transparent 20%),
+        radial-gradient(circle at 85% 80%, #ffd8ea 0 25%, transparent 25%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      overflow: hidden;
+    }
+
+    .romance-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 3;
+      overflow: hidden;
+    }
+
+    .float-icon {
+      position: absolute;
+      bottom: -12vh;
+      opacity: 0.62;
+      filter: drop-shadow(0 8px 14px rgba(156, 38, 86, 0.28));
+      animation: floatUp linear infinite;
+      user-select: none;
+    }
+
+    .card {
+      width: min(88vw, 620px);
+      background: var(--card);
+      backdrop-filter: blur(6px);
+      border-radius: 24px;
+      padding: 20px 18px 24px;
+      box-shadow: 0 20px 50px rgba(50, 20, 10, 0.18);
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(1.9rem, 4.8vw, 2.9rem);
+      line-height: 1.2;
+      position: relative;
+      z-index: 5;
+    }
+
+    .photo-wrap {
+      margin: 8px auto 18px;
+      width: min(70vw, 280px);
+      aspect-ratio: 1;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 5px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 5;
+    }
+
+    .photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .button-zone {
+      position: relative;
+      width: min(90vw, 560px);
+      height: 170px;
+      margin: 0 auto;
+      border-radius: 16px;
+      z-index: 5;
+    }
+
+    .shayari {
+      margin: 10px auto 8px;
+      max-width: 540px;
+      padding: 10px 14px;
+      font-size: clamp(1.12rem, 2.8vw, 1.36rem);
+      line-height: 1.55;
+      color: rgba(92, 33, 58, 0.84);
+      background: rgba(255, 255, 255, 0.26);
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      border-radius: 14px;
+      text-align: center;
+      font-weight: 500;
+      position: relative;
+      z-index: 5;
+    }
+
+    .shayari .line-break {
+      display: block;
+      margin-top: 4px;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      transition: transform 220ms ease, opacity 220ms ease, filter 220ms ease;
+    }
+
+    #yesBtn {
+      position: absolute;
+      left: 22%;
+      top: 58%;
+      transform: translate(-50%, -50%) scale(1);
+      min-width: 110px;
+      padding: 13px 24px;
+      border-radius: 999px;
+      font-size: 1.1rem;
+      line-height: 1.15;
+      text-align: center;
+      color: #fff;
+      background: linear-gradient(180deg, var(--yes), var(--yes-dark));
+      box-shadow: 0 10px 24px rgba(223, 41, 104, 0.4);
+      z-index: 2;
+    }
+
+    #yesBtn.final-center {
+      left: 50% !important;
+      top: 58% !important;
+      transform: translate(-50%, -50%) scale(2.35) !important;
+      box-shadow: 0 18px 34px rgba(223, 41, 104, 0.45);
+    }
+
+    #yesBtn:hover {
+      filter: brightness(1.05);
+    }
+
+    #noBtn {
+      position: absolute;
+      left: 75%;
+      top: 58%;
+      transform: translate(-50%, -50%) scale(1);
+      min-width: 105px;
+      padding: 13px 24px;
+      border-radius: 999px;
+      font-size: 1.1rem;
+      color: #fff;
+      background: var(--no);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.23);
+      z-index: 3;
+    }
+
+    .status {
+      min-height: 28px;
+      margin-top: 8px;
+      font-size: 1.02rem;
+      font-weight: 600;
+      color: #8c264d;
+      position: relative;
+      z-index: 5;
+    }
+
+    .success {
+      position: fixed;
+      inset: 0;
+      display: none;
+      place-items: center;
+      background: rgba(255, 233, 240, 0.88);
+      backdrop-filter: blur(5px);
+      z-index: 10;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .success.show {
+      display: grid;
+      animation: fadeIn 350ms ease;
+    }
+
+    .success-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 26px 24px;
+      max-width: 520px;
+      width: 100%;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
+    }
+
+    .success-card h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      color: #cf1d68;
+    }
+
+    .success-card p {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    .confetti {
+      position: fixed;
+      top: -10px;
+      width: 10px;
+      height: 16px;
+      opacity: 0.92;
+      animation: drop linear forwards;
+      z-index: 12;
+    }
+
+    @keyframes drop {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+      }
+    }
+
+    @keyframes pulse {
+      0% { transform: translate(-50%, -50%) scale(var(--scale)); }
+      50% { transform: translate(-50%, -50%) scale(calc(var(--scale) + 0.07)); }
+      100% { transform: translate(-50%, -50%) scale(var(--scale)); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) translateX(0) scale(0.9) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.36;
+      }
+      60% {
+        opacity: 0.4;
+      }
+      100% {
+        transform: translateY(-125vh) translateX(24px) scale(1.15) rotate(16deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .button-zone {
+        height: 190px;
+      }
+
+      #yesBtn, #noBtn {
+        min-width: 90px;
+        padding: 11px 20px;
+      }
+
+      .float-icon {
+        opacity: 0.5;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="romance-bg" id="romanceBg" aria-hidden="true"></div>
+
+  <main class="card">
+    <h1>Hey Simran Shukla, will you be my girlfriend?</h1>
+
+    <div class="photo-wrap">
+      <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=80" alt="Her photo" id="herPhoto" />
+    </div>
+
+    <p class="shayari" aria-label="shayari">
+      मुस्कुराहट देख कर उनकी हम होश गवा बैठे!
+      <span class="line-break"></span>
+      हम होश में आने को थे, वो फिर मुस्कुरा बैठे!!
+    </p>
+
+    <div class="button-zone" id="zone">
+      <button id="yesBtn" type="button">Offcourse Yes<br>you idiot!</button>
+      <button id="noBtn" type="button">No</button>
+    </div>
+
+    <p class="status" id="statusText"></p>
+  </main>
+
+  <section class="success" id="successScreen" aria-hidden="true">
+    <div class="success-card">
+      <h2>Yay! Best answer ever 💖</h2>
+      <p>Now let’s plan our date.</p>
+    </div>
+  </section>
+
+  <script>
+    const romanceBg = document.getElementById('romanceBg');
+    const zone = document.getElementById('zone');
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const statusText = document.getElementById('statusText');
+    const successScreen = document.getElementById('successScreen');
+
+    const maxDodges = 7;
+    let dodges = 0;
+    let yesScale = 1;
+
+    function randomInRange(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function createFloatingRomance() {
+      const icons = ['❤', '💖', '💋', '💕', '💗'];
+      const count = 26;
+
+      for (let i = 0; i < count; i += 1) {
+        const icon = document.createElement('span');
+        icon.className = 'float-icon';
+        icon.textContent = icons[Math.floor(Math.random() * icons.length)];
+        icon.style.left = `${Math.random() * 100}vw`;
+        icon.style.fontSize = `${randomInRange(16, 34)}px`;
+        icon.style.animationDuration = `${randomInRange(8, 15)}s`;
+        icon.style.animationDelay = `${randomInRange(-14, 0)}s`;
+        romanceBg.appendChild(icon);
+      }
+    }
+
+    function moveNoButton() {
+      if (dodges >= maxDodges) {
+        noBtn.style.display = 'none';
+        yesBtn.classList.add('final-center');
+        statusText.textContent = 'Looks like only YES is possible now ✨';
+        return;
+      }
+
+      dodges += 1;
+
+      const zoneRect = zone.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+
+      const pad = 12;
+      const maxLeft = zoneRect.width - btnRect.width - pad;
+      const maxTop = zoneRect.height - btnRect.height - pad;
+
+      const newLeft = randomInRange(pad, Math.max(pad + 1, maxLeft));
+      const newTop = randomInRange(pad, Math.max(pad + 1, maxTop));
+
+      noBtn.style.left = `${newLeft}px`;
+      noBtn.style.top = `${newTop}px`;
+      noBtn.style.transform = 'scale(1)';
+
+      const noScale = Math.max(0.45, 1 - dodges * 0.1);
+      noBtn.style.scale = String(noScale);
+      noBtn.style.opacity = String(Math.max(0.2, 1 - dodges * 0.12));
+
+      yesScale = Math.min(2.2, yesScale + 0.14);
+      yesBtn.style.setProperty('--scale', String(yesScale));
+      yesBtn.style.transform = `translate(-50%, -50%) scale(${yesScale})`;
+      yesBtn.style.animation = 'pulse 340ms ease';
+      setTimeout(() => {
+        yesBtn.style.animation = '';
+      }, 340);
+
+      if (dodges >= 4 && dodges < maxDodges) {
+        statusText.textContent = 'Hmm... "No" seems shy. Maybe try YES?';
+      }
+
+      if (dodges >= maxDodges) {
+        noBtn.style.display = 'none';
+        yesBtn.classList.add('final-center');
+        statusText.textContent = 'Looks like only YES is possible now ✨';
+      }
+    }
+
+    function pointerNearNo(event) {
+      if (noBtn.style.display === 'none') return;
+
+      const rect = noBtn.getBoundingClientRect();
+      const px = event.clientX;
+      const py = event.clientY;
+      const margin = 40;
+
+      const near =
+        px > rect.left - margin &&
+        px < rect.right + margin &&
+        py > rect.top - margin &&
+        py < rect.bottom + margin;
+
+      if (near) moveNoButton();
+    }
+
+    document.addEventListener('mousemove', pointerNearNo);
+
+    noBtn.addEventListener('mouseenter', moveNoButton);
+    noBtn.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      moveNoButton();
+    }, { passive: false });
+    noBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      moveNoButton();
+    });
+
+    yesBtn.addEventListener('click', () => {
+      successScreen.classList.add('show');
+      successScreen.setAttribute('aria-hidden', 'false');
+      launchConfetti();
+    });
+
+    function launchConfetti() {
+      const colors = ['#ff4f87', '#ffc0cb', '#ffd166', '#06d6a0', '#7b68ee', '#00c2ff'];
+      const amount = 140;
+
+      for (let i = 0; i < amount; i += 1) {
+        const piece = document.createElement('span');
+        piece.className = 'confetti';
+        piece.style.left = `${Math.random() * 100}vw`;
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.animationDuration = `${randomInRange(2.5, 5.2)}s`;
+        piece.style.transform = `rotate(${randomInRange(0, 360)}deg)`;
+        document.body.appendChild(piece);
+
+        setTimeout(() => piece.remove(), 5600);
+      }
+    }
+
+    createFloatingRomance();
+  </script>
+</body>
+</html>
