@@ -1,445 +1,715 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Date Question</title>
+  <title>Nikhilesh Joshi | Portfolio</title>
+  <meta name="description" content="Nikhilesh Joshi - Product Manager portfolio" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg1: #fff3e8;
-      --bg2: #ffd7c2;
-      --card: rgba(255, 255, 255, 0.56);
-      --text: #3a1e12;
-      --yes: #ff4f87;
-      --yes-dark: #df2968;
-      --no: #5d4037;
+      --bg: #f9f8f6;
+      --card: #fdfcfb;
+      --text: #1f2521;
+      --muted: #667066;
+      --line: #e0e0e0;
+      --green: #4a5d4e;
+      --blue: #4a5d4e;
+      --active-link: #3b6df6;
     }
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
       color: var(--text);
-      background:
-        radial-gradient(circle at 15% 20%, #ffe8dc 0 20%, transparent 20%),
-        radial-gradient(circle at 85% 80%, #ffd8ea 0 25%, transparent 25%),
-        linear-gradient(135deg, var(--bg1), var(--bg2));
-      overflow: hidden;
+      line-height: 1.72;
     }
 
-    .romance-bg {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 3;
-      overflow: hidden;
+    .container {
+      width: min(980px, 90vw);
+      margin: 0 auto;
     }
 
-    .float-icon {
-      position: absolute;
-      bottom: -12vh;
-      opacity: 0.62;
-      filter: drop-shadow(0 8px 14px rgba(156, 38, 86, 0.28));
-      animation: floatUp linear infinite;
-      user-select: none;
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(8px);
+      background: rgba(249, 248, 246, 0.92);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-inner {
+      padding: 1.4rem 0 1.1rem;
+      text-align: center;
+    }
+
+    .name {
+      font-family: "Lora", serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.85rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--green);
+    }
+
+    nav a.is-active {
+      color: var(--active-link);
+      font-weight: 600;
+    }
+
+    main section {
+      padding: 7rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h1.section-title {
+      font-family: "Lora", serif;
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-sub {
+      color: var(--muted);
+      margin-bottom: 2.2rem;
+      font-size: 1.05rem;
+      max-width: 740px;
+    }
+
+    .section-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .section-meta {
+      font-family: "Lora", serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .hero {
+      padding-top: 7.4rem;
+      padding-bottom: 5.2rem;
+    }
+
+    .hero p {
+      max-width: 780px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 1.3rem;
+    }
+
+    .hero-actions {
+      margin-top: 1.6rem;
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--line);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      background: #fbfaf8;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      border-color: var(--green);
+      background: var(--green);
+      color: #f9f8f6;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: center;
     }
 
     .card {
-      width: min(88vw, 620px);
       background: var(--card);
-      backdrop-filter: blur(6px);
-      border-radius: 24px;
-      padding: 20px 18px 24px;
-      box-shadow: 0 20px 50px rgba(50, 20, 10, 0.18);
-      text-align: center;
-      position: relative;
-      z-index: 2;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 1.5rem;
     }
 
-    h1 {
-      margin: 0 0 18px;
-      font-size: clamp(1.9rem, 4.8vw, 2.9rem);
-      line-height: 1.2;
-      position: relative;
-      z-index: 5;
-    }
-
-    .photo-wrap {
-      margin: 8px auto 18px;
-      width: min(70vw, 280px);
-      aspect-ratio: 1;
-      border-radius: 22px;
+    .about-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 320px;
+      padding: 0.5rem;
+      background: #f5f2e9;
       overflow: hidden;
-      border: 5px solid rgba(255, 255, 255, 0.9);
-      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.2);
-      position: relative;
-      z-index: 5;
     }
 
-    .photo-wrap img {
+    .about-image img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center 14%;
+      transform: scale(1.43);
+      transform-origin: center 16%;
+      border-radius: 12px;
+      border: 1px solid #d9d4c5;
+      background: #e8e3d3;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .timeline {
+      position: relative;
+      margin-top: 1rem;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 11px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--line);
+    }
+
+    .exp-item {
+      position: relative;
+      margin-left: 2.3rem;
+      margin-bottom: 1.3rem;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-left: 2px solid var(--green);
+      border-radius: 8px;
+      padding: 1.3rem;
+    }
+
+    .exp-item::before {
+      content: "";
+      position: absolute;
+      left: -2rem;
+      top: 1.1rem;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--green);
+      border: 2px solid var(--bg);
+    }
+
+    .exp-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.38rem;
+    }
+
+    .exp-role {
+      font-family: "Lora", serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .exp-company {
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .exp-period {
+      font-size: 0.77rem;
+      color: #7b847c;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .exp-item ul {
+      margin-left: 1rem;
+      color: var(--muted);
+      font-size: 0.93rem;
+      display: grid;
+      gap: 0.28rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .project {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: 0.2s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-2px);
+      border-color: #cdd5ce;
+    }
+
+    .project-thumb {
+      aspect-ratio: 16 / 9;
+      height: auto;
+      background: #f3f1eb;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-thumb img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    .button-zone {
-      position: relative;
-      width: min(90vw, 560px);
-      height: 170px;
-      margin: 0 auto;
-      border-radius: 16px;
-      z-index: 5;
+    .project-body {
+      padding: 1rem;
     }
 
-    .shayari {
-      margin: 10px auto 8px;
-      max-width: 540px;
-      padding: 10px 14px;
-      font-size: clamp(1.12rem, 2.8vw, 1.36rem);
-      line-height: 1.55;
-      color: rgba(92, 33, 58, 0.84);
-      background: rgba(255, 255, 255, 0.26);
-      border: 1px solid rgba(255, 255, 255, 0.32);
-      border-radius: 14px;
-      text-align: center;
-      font-weight: 500;
-      position: relative;
-      z-index: 5;
+    .project h3 {
+      font-family: "Lora", serif;
+      font-size: 1.06rem;
+      margin-bottom: 0.4rem;
     }
 
-    .shayari .line-break {
-      display: block;
-      margin-top: 4px;
+    .project p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 0.55rem;
     }
 
-    button {
-      border: 0;
-      cursor: pointer;
-      font-weight: 700;
-      letter-spacing: 0.2px;
-      transition: transform 220ms ease, opacity 220ms ease, filter 220ms ease;
+    .tags {
+      color: #6f786f;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      line-height: 1.5;
     }
 
-    #yesBtn {
-      position: absolute;
-      left: 22%;
-      top: 58%;
-      transform: translate(-50%, -50%) scale(1);
-      min-width: 110px;
-      padding: 13px 24px;
-      border-radius: 999px;
-      font-size: 1.1rem;
-      line-height: 1.15;
-      text-align: center;
-      color: #fff;
-      background: linear-gradient(180deg, var(--yes), var(--yes-dark));
-      box-shadow: 0 10px 24px rgba(223, 41, 104, 0.4);
-      z-index: 2;
-    }
-
-    #yesBtn.final-center {
-      left: 50% !important;
-      top: 58% !important;
-      transform: translate(-50%, -50%) scale(2.35) !important;
-      box-shadow: 0 18px 34px rgba(223, 41, 104, 0.45);
-    }
-
-    #yesBtn:hover {
-      filter: brightness(1.05);
-    }
-
-    #noBtn {
-      position: absolute;
-      left: 75%;
-      top: 58%;
-      transform: translate(-50%, -50%) scale(1);
-      min-width: 105px;
-      padding: 13px 24px;
-      border-radius: 999px;
-      font-size: 1.1rem;
-      color: #fff;
-      background: var(--no);
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.23);
-      z-index: 3;
-    }
-
-    .status {
-      min-height: 28px;
-      margin-top: 8px;
-      font-size: 1.02rem;
-      font-weight: 600;
-      color: #8c264d;
-      position: relative;
-      z-index: 5;
-    }
-
-    .success {
-      position: fixed;
-      inset: 0;
-      display: none;
-      place-items: center;
-      background: rgba(255, 233, 240, 0.88);
-      backdrop-filter: blur(5px);
-      z-index: 10;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .success.show {
+    .contact-grid {
       display: grid;
-      animation: fadeIn 350ms ease;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
     }
 
-    .success-card {
-      background: #fff;
-      border-radius: 20px;
-      padding: 26px 24px;
-      max-width: 520px;
-      width: 100%;
-      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
+    .contact-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: var(--text);
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 1rem;
+      transition: 0.2s;
+      min-height: 138px;
     }
 
-    .success-card h2 {
-      margin: 0 0 8px;
-      font-size: clamp(1.4rem, 3.5vw, 2rem);
-      color: #cf1d68;
+    .contact-card:hover {
+      border-color: var(--green);
+      transform: translateY(-2px);
     }
 
-    .success-card p {
-      margin: 0;
+    .contact-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+    }
+
+    .contact-title {
       font-size: 1.05rem;
+      color: #111111;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.1;
     }
 
-    .confetti {
-      position: fixed;
-      top: -10px;
-      width: 10px;
-      height: 16px;
-      opacity: 0.92;
-      animation: drop linear forwards;
-      z-index: 12;
+    .contact-icon {
+      font-size: 1.08rem;
+      color: #4d84ef;
+      line-height: 1;
     }
 
-    @keyframes drop {
-      to {
-        transform: translateY(110vh) rotate(720deg);
-      }
+    .contact-value {
+      color: #313831;
+      font-weight: 600;
+      word-break: break-word;
+      line-height: 1.35;
     }
 
-    @keyframes pulse {
-      0% { transform: translate(-50%, -50%) scale(var(--scale)); }
-      50% { transform: translate(-50%, -50%) scale(calc(var(--scale) + 0.07)); }
-      100% { transform: translate(-50%, -50%) scale(var(--scale)); }
+    .contact-note {
+      color: #7a837b;
+      font-size: 0.84rem;
+      line-height: 1.35;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    footer {
+      padding: 2rem 0 3rem;
+      color: #7a827b;
+      font-size: 0.82rem;
     }
 
-    @keyframes floatUp {
-      0% {
-        transform: translateY(0) translateX(0) scale(0.9) rotate(0deg);
-        opacity: 0;
-      }
-      10% {
-        opacity: 0.36;
-      }
-      60% {
-        opacity: 0.4;
-      }
-      100% {
-        transform: translateY(-125vh) translateX(24px) scale(1.15) rotate(16deg);
-        opacity: 0;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .button-zone {
-        height: 190px;
+    @media (max-width: 900px) {
+      .about-layout,
+      .projects-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
       }
 
-      #yesBtn, #noBtn {
-        min-width: 90px;
-        padding: 11px 20px;
+      .about-image {
+        min-height: 260px;
       }
 
-      .float-icon {
-        opacity: 0.5;
+      .timeline::before {
+        left: 8px;
+      }
+
+      .exp-item {
+        margin-left: 1.9rem;
+      }
+
+      .exp-item::before {
+        left: -1.63rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="romance-bg" id="romanceBg" aria-hidden="true"></div>
-
-  <main class="card">
-    <h1>Hey Simran Shukla, will you be my girlfriend?</h1>
-
-    <div class="photo-wrap">
-      <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=80" alt="Her photo" id="herPhoto" />
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="name">Nikhilesh Joshi</div>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#experiences">Experiences</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
     </div>
+  </header>
 
-    <p class="shayari" aria-label="shayari">
-      मुस्कुराहट देख कर उनकी हम होश गवा बैठे!
-      <span class="line-break"></span>
-      हम होश में आने को थे, वो फिर मुस्कुरा बैठे!!
-    </p>
+  <main>
+    <!--
+    <section class="hero">
+      <div class="container">
+        <h1 class="section-title">AI x FinTech Product Manager</h1>
+        <p>
+          I design and scale product experiences in capital markets, with a focus on growth, analytics, and practical AI integrations.
+          I have worked in fast-moving startup teams and shipped features that improved adoption, retention, and user outcomes.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">See Projects</a>
+          <a class="btn" href="#contact">Get in Touch</a>
+          <a class="btn" href="./resume.pdf" target="_blank" rel="noreferrer">View Resume</a>
+        </div>
+      </div>
+    </section>
+    -->
 
-    <div class="button-zone" id="zone">
-      <button id="yesBtn" type="button">Offcourse Yes<br>you idiot!</button>
-      <button id="noBtn" type="button">No</button>
-    </div>
+    <section id="about">
+      <div class="container">
+        <h1 class="section-title">About Me</h1>
+        <p class="section-sub">Product strategy, data analytics, and AI-powered user experiences in fintech.</p>
+        <div class="about-layout">
+          <figure class="card about-image">
+            <img
+              src="./assets/images/profile.jpg"
+              alt="Nikhilesh Joshi profile photo"
+            />
+          </figure>
+          <article class="card about-text">
+            <p>
+              I'm an MBA professional with 3+ years of experience building and scaling B2C fintech products in startup environments.
+              I work across product strategy, analytics, and AI-driven user experiences.
+            </p>
+            <p>
+              Most of my work sits at the intersection of technology, financial data, and user behavior, with a focus on shipping
+              practical features that improve engagement and decision quality.
+            </p>
+            <p>
+              I transitioned from civil engineering to product management, and I bring a blend of analytical thinking, user empathy,
+              and execution discipline to every product I build.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-    <p class="status" id="statusText"></p>
+    <section id="experiences">
+      <div class="container">
+        <div class="section-title-row">
+          <h1 class="section-title">Experience</h1>
+          <div class="section-meta">4+ Years</div>
+        </div>
+        <p class="section-sub">Selected roles across product management and fintech work.</p>
+
+        <div class="timeline">
+          <article class="exp-item">
+            <div class="exp-head">
+              <div>
+                <div class="exp-role">Product Manager</div>
+                <div class="exp-company">Zanskar Research Pvt Ltd (Nubra)</div>
+              </div>
+              <div class="exp-period">Dec'25 - Present</div>
+            </div>
+            <ul>
+              <li>Owning the user activation funnel (KYC done -> first trade), with a focus on improving first-time user experience and early retention by identifying key drop-offs and user friction points.</li>
+              <li>Leading the end-to-end MTF Margin Trading funding product build, aimed at increasing revenue through higher funded trading activity, interest income, and improved investor cohort engagement.</li>
+            </ul>
+          </article>
+
+          <article class="exp-item">
+            <div class="exp-head">
+              <div>
+                <div class="exp-role">Product Manager</div>
+                <div class="exp-company">FrontPage Pvt Ltd (Y Combinator S21)</div>
+              </div>
+              <div class="exp-period">Apr'24 - Dec'25</div>
+            </div>
+            <ul>
+              <li>Spearheaded E2E GTM strategy for the company's first monetization layer, driving over INR 15L+ in MRR and achieving a 15%+ adoption rate within the existing user base.</li>
+              <li>Expanded the Total Addressable Market by launching a novel AI-powered holdings feed for retail investors that synthesizes disparate stock news, announcements, and concall insights, capturing 20% of the platform's total DAU.</li>
+              <li>Owned the E2E development of an AI support agent, architecting the prompts, vector embeddings, and RAG pipeline to achieve 90%+ query resolution without escalation, a 75% reduction in resolution time for 95% of cases, saving the equivalent of one FTE.</li>
+              <li>Led the product roadmap for all AI initiatives, from user journey mapping to GTM, while leading development of new intelligent investor tools that synthesize diverse public and proprietary data into actionable, personalized insights.</li>
+            </ul>
+          </article>
+
+          <article class="exp-item" style="border-left-color: var(--blue);">
+            <div class="exp-head">
+              <div>
+                <div class="exp-role">Associate Product Manager</div>
+                <div class="exp-company">FrontPage Pvt Ltd</div>
+              </div>
+              <div class="exp-period">Apr'22 - Mar'24</div>
+            </div>
+            <ul>
+              <li>Scaled TradeLab, a virtual brokerage product, from 6K to 150K DAU by defining the product roadmap, leading cross-functional execution across design, engineering, and QA, and continuously improving the experience through user feedback and UX enhancements; doubled trades per user and achieved a 4.5+ Play Store rating.</li>
+              <li>Designed and launched an AI-powered trade journal using OpenAI's Whisper API, improving platform retention. Owned UX flows, user research, and execution, leading to 1L+ user adoption and a 15% increase in W4 retention by enabling seamless insight capture.</li>
+              <li>Owned the E2E user journey for the virtual trading platform, responsible for optimizing the entire funnel from user acquisition and activation to engagement and retention.</li>
+              <li>Led feature expansion by integrating diverse news sources and leveraging LLMs to generate market impact insights. This improved usability, driving DAU from 8K to 37K, increasing W4 retention from 11% to 27%, and boosting daily card swipes from 36K to 100K.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <h1 class="section-title">Projects</h1>
+        <p class="section-sub">Selected work across AI, product growth, and market intelligence.</p>
+
+        <div class="projects-grid">
+          <!-- Project 1: link | image | title (<= 5 words) | about (~20 words) | skills (max 5) -->
+          <a class="project" href="https://www.notion.so/nikhileshjoshi/Scaling-TradeLab-A-Virtual-Brokerage-Platform-23807323fe21800bb36ad51623814710?source=copy_link" target="_blank" rel="noopener noreferrer">
+            <div class="project-thumb">
+              <img src="./assets/images/Tradelab.png" alt="Scaling TradeLab: A Virtual Brokerage Platform" loading="lazy" />
+            </div>
+            <div class="project-body">
+              <h3>Scaling TradeLab: A Virtual Brokerage Platform</h3>
+              <p>scaled the platform's core feature by over 700% (from 15K to 125K DAU), which became the primary engine for the entire platform's user growth and its major source of revenue.</p>
+              <div class="tags">UI • UX • Product Analytics • Fintech UX • Product Thinking</div>
+            </div>
+          </a>
+
+          <!-- Project 2: link | image | title (<= 5 words) | about (~20 words) | skills (max 5) -->
+          <a class="project" href="https://www.notion.so/nikhileshjoshi/Building-an-AI-Powered-Support-Agent-23807323fe218094abcbe7bc48cb3927" target="_blank" rel="noopener noreferrer">
+            <div class="project-thumb">
+              <img src="./assets/images/Building an AI-Powered Support Agent.png" alt="AI-Powered Support Agent" loading="lazy" />
+            </div>
+            <div class="project-body">
+              <h3>AI-Powered Support Agent</h3>
+              <p>led the development of an LLM-driven support agent that boosted the support team's efficiency.</p>
+              <div class="tags">Whisper API • Python • UX Workflow • Integrations • Prompt Design</div>
+            </div>
+          </a>
+
+          <!-- Project 3: link | image | title (<= 5 words) | about (~20 words) | skills (max 5) -->
+          <a class="project" href="https://docs.google.com/presentation/d/1sHXtZeE3ZKNXikLedigAJDW2mOgMY-LxU8t5Ab4wQLQ/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+            <div class="project-thumb">
+              <img src="./assets/images/Delhivery.png" alt="Delhivery Ltd - Investment Thesis & Analysis" loading="lazy" />
+            </div>
+            <div class="project-body">
+              <h3>Delhivery Ltd - Investment Thesis & Analysis</h3>
+              <p>As a student of the markets, I conducted a fundamental equity research analysis of Delhivery, assessing its business model, financial performance, competitive positioning, and valuation.</p>
+              <div class="tags">Equity Research • Investment Thesis • Valuation Framework • Sectoral Research</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h1 class="section-title">Contact Info</h1>
+        <p class="section-sub">Open to product, AI, and fintech conversations.</p>
+        <div class="contact-grid">
+          <a class="contact-card" href="mailto:nikhileshjoshi610@gmail.com">
+            <div class="contact-card-header">
+              <div class="contact-title">Email</div>
+              <span class="contact-icon" aria-hidden="true">&#8599;</span>
+            </div>
+            <div class="contact-value">nikhileshjoshi610@gmail.com</div>
+            <div class="contact-note">Best for direct collaboration.</div>
+          </a>
+          <a class="contact-card" href="https://www.linkedin.com/in/nikhileshjoshi610" target="_blank" rel="noreferrer">
+            <div class="contact-card-header">
+              <div class="contact-title">LinkedIn</div>
+              <span class="contact-icon" aria-hidden="true">&#8599;</span>
+            </div>
+            <div class="contact-value">linkedin.com/in/nikhileshjoshi</div>
+            <div class="contact-note">Professional profile and updates.</div>
+          </a>
+          <a class="contact-card" href="https://forum.valuepickr.com/u/nikhilesh_joshi/summary" target="_blank" rel="noreferrer">
+            <div class="contact-card-header">
+              <div class="contact-title">Valuepicker</div>
+              <span class="contact-icon" aria-hidden="true">&#8599;</span>
+            </div>
+            <div class="contact-value">valuepickr.com/u/nikhilesh_joshi</div>
+            <div class="contact-note">My views as a Student of Stock Market</div>
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <section class="success" id="successScreen" aria-hidden="true">
-    <div class="success-card">
-      <h2>Yay! Best answer ever 💖</h2>
-      <p>Now let’s plan our date.</p>
-    </div>
-  </section>
-
+  <footer>
+    <div class="container">&copy; 2026 Nikhilesh Joshi</div>
+  </footer>
   <script>
-    const romanceBg = document.getElementById('romanceBg');
-    const zone = document.getElementById('zone');
-    const yesBtn = document.getElementById('yesBtn');
-    const noBtn = document.getElementById('noBtn');
-    const statusText = document.getElementById('statusText');
-    const successScreen = document.getElementById('successScreen');
+    const navLinks = Array.from(document.querySelectorAll('nav a[href^="#"]'));
+    const sectionEntries = navLinks
+      .map((link) => {
+        const id = link.getAttribute("href").slice(1);
+        const section = document.getElementById(id);
+        return section ? { id, section } : null;
+      })
+      .filter(Boolean);
 
-    const maxDodges = 7;
-    let dodges = 0;
-    let yesScale = 1;
-
-    function randomInRange(min, max) {
-      return Math.random() * (max - min) + min;
+    function setActiveLink(activeId) {
+      navLinks.forEach((link) => {
+        const isActive = link.getAttribute("href") === "#" + activeId;
+        link.classList.toggle("is-active", isActive);
+        if (isActive) {
+          link.setAttribute("aria-current", "page");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
     }
 
-    function createFloatingRomance() {
-      const icons = ['❤', '💖', '💋', '💕', '💗'];
-      const count = 26;
+    function getHeaderOffset() {
+      const header = document.querySelector(".site-header");
+      return (header ? header.offsetHeight : 0) + 20;
+    }
 
-      for (let i = 0; i < count; i += 1) {
-        const icon = document.createElement('span');
-        icon.className = 'float-icon';
-        icon.textContent = icons[Math.floor(Math.random() * icons.length)];
-        icon.style.left = `${Math.random() * 100}vw`;
-        icon.style.fontSize = `${randomInRange(16, 34)}px`;
-        icon.style.animationDuration = `${randomInRange(8, 15)}s`;
-        icon.style.animationDelay = `${randomInRange(-14, 0)}s`;
-        romanceBg.appendChild(icon);
+    function getActiveSectionId() {
+      if (sectionEntries.length === 0) {
+        return null;
+      }
+
+      const scrollTarget = window.scrollY + getHeaderOffset();
+      let activeId = sectionEntries[0].id;
+
+      sectionEntries.forEach(({ id, section }) => {
+        if (scrollTarget >= section.offsetTop) {
+          activeId = id;
+        }
+      });
+
+      const nearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+      if (nearBottom) {
+        activeId = sectionEntries[sectionEntries.length - 1].id;
+      }
+
+      return activeId;
+    }
+
+    function updateActiveLink() {
+      const activeId = getActiveSectionId();
+      if (activeId) {
+        setActiveLink(activeId);
       }
     }
 
-    function moveNoButton() {
-      if (dodges >= maxDodges) {
-        noBtn.style.display = 'none';
-        yesBtn.classList.add('final-center');
-        statusText.textContent = 'Looks like only YES is possible now ✨';
-        return;
-      }
-
-      dodges += 1;
-
-      const zoneRect = zone.getBoundingClientRect();
-      const btnRect = noBtn.getBoundingClientRect();
-
-      const pad = 12;
-      const maxLeft = zoneRect.width - btnRect.width - pad;
-      const maxTop = zoneRect.height - btnRect.height - pad;
-
-      const newLeft = randomInRange(pad, Math.max(pad + 1, maxLeft));
-      const newTop = randomInRange(pad, Math.max(pad + 1, maxTop));
-
-      noBtn.style.left = `${newLeft}px`;
-      noBtn.style.top = `${newTop}px`;
-      noBtn.style.transform = 'scale(1)';
-
-      const noScale = Math.max(0.45, 1 - dodges * 0.1);
-      noBtn.style.scale = String(noScale);
-      noBtn.style.opacity = String(Math.max(0.2, 1 - dodges * 0.12));
-
-      yesScale = Math.min(2.2, yesScale + 0.14);
-      yesBtn.style.setProperty('--scale', String(yesScale));
-      yesBtn.style.transform = `translate(-50%, -50%) scale(${yesScale})`;
-      yesBtn.style.animation = 'pulse 340ms ease';
-      setTimeout(() => {
-        yesBtn.style.animation = '';
-      }, 340);
-
-      if (dodges >= 4 && dodges < maxDodges) {
-        statusText.textContent = 'Hmm... "No" seems shy. Maybe try YES?';
-      }
-
-      if (dodges >= maxDodges) {
-        noBtn.style.display = 'none';
-        yesBtn.classList.add('final-center');
-        statusText.textContent = 'Looks like only YES is possible now ✨';
-      }
-    }
-
-    function pointerNearNo(event) {
-      if (noBtn.style.display === 'none') return;
-
-      const rect = noBtn.getBoundingClientRect();
-      const px = event.clientX;
-      const py = event.clientY;
-      const margin = 40;
-
-      const near =
-        px > rect.left - margin &&
-        px < rect.right + margin &&
-        py > rect.top - margin &&
-        py < rect.bottom + margin;
-
-      if (near) moveNoButton();
-    }
-
-    document.addEventListener('mousemove', pointerNearNo);
-
-    noBtn.addEventListener('mouseenter', moveNoButton);
-    noBtn.addEventListener('touchstart', (e) => {
-      e.preventDefault();
-      moveNoButton();
-    }, { passive: false });
-    noBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      moveNoButton();
+    window.addEventListener("scroll", updateActiveLink, { passive: true });
+    window.addEventListener("resize", updateActiveLink);
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        const id = link.getAttribute("href").slice(1);
+        setActiveLink(id);
+      });
     });
 
-    yesBtn.addEventListener('click', () => {
-      successScreen.classList.add('show');
-      successScreen.setAttribute('aria-hidden', 'false');
-      launchConfetti();
-    });
-
-    function launchConfetti() {
-      const colors = ['#ff4f87', '#ffc0cb', '#ffd166', '#06d6a0', '#7b68ee', '#00c2ff'];
-      const amount = 140;
-
-      for (let i = 0; i < amount; i += 1) {
-        const piece = document.createElement('span');
-        piece.className = 'confetti';
-        piece.style.left = `${Math.random() * 100}vw`;
-        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-        piece.style.animationDuration = `${randomInRange(2.5, 5.2)}s`;
-        piece.style.transform = `rotate(${randomInRange(0, 360)}deg)`;
-        document.body.appendChild(piece);
-
-        setTimeout(() => piece.remove(), 5600);
-      }
+    const initialId = window.location.hash.slice(1);
+    if (sectionEntries.some(({ id }) => id === initialId)) {
+      setActiveLink(initialId);
+    } else {
+      updateActiveLink();
     }
-
-    createFloatingRomance();
   </script>
 </body>
 </html>
