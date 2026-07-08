@@ -126,6 +126,42 @@
       color: var(--text);
     }
 
+    .achievement-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .achievement-card {
+      background: linear-gradient(180deg, #ffffff 0%, #fbfaf8 100%);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 1.2rem 1.15rem;
+      box-shadow: 0 8px 20px rgba(31, 37, 33, 0.04);
+    }
+
+    .achievement-label {
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--green);
+      margin-bottom: 0.55rem;
+      font-weight: 700;
+    }
+
+    .achievement-title {
+      font-family: "Lora", serif;
+      font-size: 1.14rem;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .achievement-card p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
     .hero {
       padding-top: 7.4rem;
       padding-bottom: 5.2rem;
@@ -444,6 +480,7 @@
       <nav>
         <ul>
           <li><a href="#about">About</a></li>
+          <li><a href="#achievements">Achievements</a></li>
           <li><a href="#experiences">Experiences</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -499,6 +536,42 @@
       </div>
     </section>
 
+    <section id="achievements">
+      <div class="container">
+        <div class="section-title-row">
+          <h1 class="section-title">Key Achievements</h1>
+          <div class="section-meta">Resume highlights</div>
+        </div>
+        <p class="section-sub">A few outcomes from the new resume that best capture the work I have been doing recently.</p>
+
+        <div class="achievement-grid">
+          <article class="achievement-card">
+            <div class="achievement-label">Activation</div>
+            <div class="achievement-title">KYC completed to first trade</div>
+            <p>Improved Nubra.io's conversion from 10% to 35% by reducing onboarding and first-time trading friction.</p>
+          </article>
+
+          <article class="achievement-card">
+            <div class="achievement-label">Monetization</div>
+            <div class="achievement-title">FrontPage Premium revenue</div>
+            <p>Launched FrontPage Premium as a new revenue stream, driving INR 30L+ in monthly recurring revenue and 15%+ adoption.</p>
+          </article>
+
+          <article class="achievement-card">
+            <div class="achievement-label">Growth</div>
+            <div class="achievement-title">TradeLab scale-up</div>
+            <p>Scaled TradeLab from 6K to 150K DAU, doubled trades per user, and achieved a 4.5+ Play Store rating.</p>
+          </article>
+
+          <article class="achievement-card">
+            <div class="achievement-label">Retention</div>
+            <div class="achievement-title">Recurring engagement loops</div>
+            <p>Improved FrontPage's W4 retention to 65% by building engagement loops across watchlists, AI insights, news, and notifications.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section id="experiences">
       <div class="container">
         <div class="section-title-row">
@@ -512,13 +585,15 @@
             <div class="exp-head">
               <div>
                 <div class="exp-role">Product Manager</div>
-                <div class="exp-company">Zanskar Research Pvt Ltd (Nubra)</div>
+                <div class="exp-company">Nubra.io - Zanskar Research (Stock Broker)</div>
               </div>
               <div class="exp-period">Dec'25 - Present</div>
             </div>
             <ul>
-              <li>Owning the user activation funnel (KYC done -> first trade), with a focus on improving first-time user experience and early retention by identifying key drop-offs and user friction points.</li>
-              <li>Leading the end-to-end MTF Margin Trading funding product build, aimed at increasing revenue through higher funded trading activity, interest income, and improved investor cohort engagement.</li>
+              <li>Improved KYC completed -> first trade conversion from 10% to 35% by fixing funnel drop-offs, improving segment activation communication, and simplifying the first-time trading experience.</li>
+              <li>Leading cross-functional build of MTF (Margin Trading Facility), aligning product, engineering, risk, compliance, and business stakeholders to create a new revenue stream and deeper investor engagement.</li>
+              <li>Created a direct user-to-product feedback loop by enabling in-app bug reports and feature requests for 10,000+ users, helping convert user pain points into actionable roadmap priorities.</li>
+              <li>Created Claude Skills to streamline data discovery across 1,800+ back-office tables and accelerate delivery of key reports such as Tradebook and Daily P&L.</li>
             </ul>
           </article>
 
@@ -526,15 +601,14 @@
             <div class="exp-head">
               <div>
                 <div class="exp-role">Product Manager</div>
-                <div class="exp-company">FrontPage Pvt Ltd (Y Combinator S21)</div>
+                <div class="exp-company">FrontPage Pvt Ltd (Virtual Stock Broker)</div>
               </div>
               <div class="exp-period">Apr'24 - Dec'25</div>
             </div>
             <ul>
-              <li>Spearheaded E2E GTM strategy for the company's first monetization layer, driving over INR 15L+ in MRR and achieving a 15%+ adoption rate within the existing user base.</li>
+              <li>Spearheaded E2E GTM strategy for FrontPage Premium, driving over INR 30L+ monthly recurring revenue and achieving a 15%+ adoption rate within the existing user base.</li>
               <li>Expanded the Total Addressable Market by launching a novel AI-powered holdings feed for retail investors that synthesizes disparate stock news, announcements, and concall insights, capturing 20% of the platform's total DAU.</li>
               <li>Owned the E2E development of an AI support agent, architecting the prompts, vector embeddings, and RAG pipeline to achieve 90%+ query resolution without escalation, a 75% reduction in resolution time for 95% of cases, saving the equivalent of one FTE.</li>
-              <li>Led the product roadmap for all AI initiatives, from user journey mapping to GTM, while leading development of new intelligent investor tools that synthesize diverse public and proprietary data into actionable, personalized insights.</li>
             </ul>
           </article>
 
@@ -542,7 +616,7 @@
             <div class="exp-head">
               <div>
                 <div class="exp-role">Associate Product Manager</div>
-                <div class="exp-company">FrontPage Pvt Ltd</div>
+                <div class="exp-company">FrontPage Pvt Ltd (Virtual Stock Broker)</div>
               </div>
               <div class="exp-period">Apr'22 - Mar'24</div>
             </div>
@@ -551,6 +625,19 @@
               <li>Designed and launched an AI-powered trade journal using OpenAI's Whisper API, improving platform retention. Owned UX flows, user research, and execution, leading to 1L+ user adoption and a 15% increase in W4 retention by enabling seamless insight capture.</li>
               <li>Owned the E2E user journey for the virtual trading platform, responsible for optimizing the entire funnel from user acquisition and activation to engagement and retention.</li>
               <li>Led feature expansion by integrating diverse news sources and leveraging LLMs to generate market impact insights. This improved usability, driving DAU from 8K to 37K, increasing W4 retention from 11% to 27%, and boosting daily card swipes from 36K to 100K.</li>
+            </ul>
+          </article>
+
+          <article class="exp-item">
+            <div class="exp-head">
+              <div>
+                <div class="exp-role">Product Intern</div>
+                <div class="exp-company">FrontPage Pvt Ltd (YC S21)</div>
+              </div>
+              <div class="exp-period">Apr'21 - Jul'21</div>
+            </div>
+            <ul>
+              <li>Helped grow the investor and trader community by partnering with 16+ finance creators and 15+ B-school investment clubs, improving platform visibility and awareness.</li>
             </ul>
           </article>
         </div>
